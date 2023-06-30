@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-family: sans-serif;
+  }
+
+.screen {
+    --primary-rgb: 0, 169, 23;
+    background-color: rgba(var(--primary-rgb), 0.15);
+
+    width: 500px;
+    aspect-ratio: 10 / 16;
+
+    position: relative;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+
+    border: 3px solid rgba(var(--primary-rgb), 0.8);
+    border-radius: 1rem;
+    margin: 8px;
+
+    overflow: hidden;   
+}
+
+
+
+.screen > .screen-image {
+    background-image: url("https://www.tandridgegolfclub.com/media/1349/tandridge-18th-0057-web.jpg");
+    height: 100%;
+    width: 100%;
+    object-fit: 300%; 
+    /* filter: sepia(1%) hue-rotate(22deg) saturate(300%) brightness(70%); */
+    opacity: 1;
+
+    position: absolute;
+
+    background-position: 36% 42%;
+    background-size: 300%;
+    
+    animation: pan-image 30s cubic-bezier(0.38, 0.2, 0.65, 0.84) infinite;
+}
+
+@keyframes pan-image {
+    0% {
+        background-position: 0% 60%;
+        background-size: 300%;
+    }
+    55% {
+        background-position: 50% 55%;
+        background-size: 400%;
+    }
+    55.0001% {
+        background-position: 50% 55%;
+        background-size: 400%;
+    }
+    100% {
+        background-position: 74% 25%;
+        background-size: 530%;
+    }
+    
+}
+
+
+
+
+.screen-overlay {
+    background-size: 100% 4px;
+    background-image: linear-gradient(
+        rgba(var(--primary-rgb), 0.05), 
+        rgba(var(--primary-rgb), 0.05) 1px, 
+        transparent 2px, 
+        transparent 3px
+    );
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2; 
+    left: Opx;
+    top: 0px;
+
+    animation: pan-overlay 70s cubic-bezier(0.28, 0.15, 0.68, 0.84) infinite;
+
+} 
+
+
+@keyframes pan-overlay {
+    from {
+    background-position: 0% 0%;
+    }
+    to {
+    background-position: 0% 100%;
+    }
+}
