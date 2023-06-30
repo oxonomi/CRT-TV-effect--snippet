@@ -22,7 +22,17 @@ body {
     margin: 8px;
 
     overflow: hidden;   
+
+    /* give time for image to load css-only */
+    opacity: 0; 
+    animation: delay 2s forwards;
 }
+
+@keyframes delay {
+    to {
+      opacity: 1;
+    }
+  }
 
 
 
@@ -39,6 +49,7 @@ body {
     background-position: 36% 42%;
     background-size: 300%;
     
+    /* aimate image  */
     animation: pan-image 30s cubic-bezier(0.38, 0.2, 0.65, 0.84) infinite;
 }
 
@@ -64,22 +75,25 @@ body {
 
 
 
-
+/* CRT-TV effect */
 .screen-overlay {
-    background-size: 100% 4px;
-    background-image: linear-gradient(
-        rgba(var(--primary-rgb), 0.05), 
-        rgba(var(--primary-rgb), 0.05) 1px, 
-        transparent 2px, 
-        transparent 3px
-    );
+    /* rather than using a repeating-linear-gradient, use normal linear-gradient and a 4px background height which will repeat to fill the space by default. 
+        This allows us to animate the background-position, unlike with a repeating-linear-gradient */
+    background-size: 100% 4px; 
+    background-image: linear-gradient(    /* use the same color for start and end so it's block lines instead of a gradient */
+        rgba(var(--primary-rgb), 0.1), /* start color line  */
+        rgba(var(--primary-rgb), 0.1) 1px, /* end color line */
+        transparent 2px, /* start transparent line */  
+        transparent 3px /* end transparent line */
+    ); /* modify spacing and color to your preference */
     height: 100%;
     width: 100%;
     position: absolute;
     z-index: 2; 
     left: Opx;
     top: 0px;
-
+    
+    /* animate the overlay, using cubic-bezier to add some variance to motion, fast, slow fast */
     animation: pan-overlay 70s cubic-bezier(0.28, 0.15, 0.68, 0.84) infinite;
 
 } 
